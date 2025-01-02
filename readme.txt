@@ -29,3 +29,7 @@
 - 由于本 mod 只做了 id 交换，因此对于能重复获取的物品那么其被交换后的物品也将能重复获取（但是 CER 的武器盔甲以及法术基本都是一次固定获取，因此此处无关紧要）
 - 虽然是运行时随机，但是从商店买的物品不会被随机
 - **BUG** ,把武器（未升级）/盔甲丢地上再捡起来可以重新随机，没事请勿尝试。
+
+## Credits
+- https://www.nexusmods.com/eldenring/mods/3419
+- https://github.com/Nordgaren/Erd-Tools
