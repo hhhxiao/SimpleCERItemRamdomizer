@@ -19,6 +19,7 @@
 #include "include/misc.h"
 #include "items.h"
 #include "logger.h"
+#include "randomizer.h"
 
 void openConsole() {
     if (AllocConsole()) {
@@ -41,18 +42,17 @@ void openConsole() {
 
 // 各种初始化
 DWORD WINAPI start(LPVOID lpParam) {
-    // openConsole();
-    config::init();
-    if (config::debug_mode()) {
+    auto& opt = Option::get();
+    auto& randomizer = Randomizer::get();
+    opt.load();
+    if (opt.debug_mode) {
         openConsole();
         system("chcp 65001");
     }
     DBG("Simple CER Item Randomier v0.0.1");
     DBG("By hhhxiao (https://space.bilibili.com/34227664)");
-    config::print_all_info();
     DBG("Mod Injected!");
-    init_item_set();
-    begin_randomzie(config::random_seed());
+    randomizer.init();
     hooks::initilize();
     ExitThread(0);
 }

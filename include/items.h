@@ -13,7 +13,24 @@ enum Category {
 
 };
 
-[[nodiscard]] std::string categoryToString(Category category);
+inline std::string categoryToString(Category category) {
+    switch (category) {
+        case Weapons:
+            return "Weapons";
+        case Protector:
+            return "Protector";
+        case Accessory:
+            return "Accessory";
+        case Goods:
+            return "Goods";
+        case Gem:
+            return "Gem";
+        default:
+            return "Unknown";
+    }
+    return "Unknown";
+}
+
 struct ItemEntry {
     int32_t count{0};
     int32_t id{0};  // item.ID + item.Infusion + item.Upgrade + (int)item.Category)
@@ -21,15 +38,13 @@ struct ItemEntry {
     int32_t gem{0};
 
     Category category() const { return static_cast<Category>(id & 0xF0000000); }
-    int32_t real_id() const { return id & 0x0FFFFFFF; }
+    int32_t local_id() const { return id & 0x0FFFFFFF; }
+
+    std::string id_string() const {
+        return std::to_string(id) + "(" + categoryToString(category()) + ":" + std::to_string(local_id()) + ")";
+    }
+
+    static ItemEntry fromLocalIdCat(int32_t local_id, Category cat) { return {0, local_id + cat, 0, 0}; }
+    static ItemEntry fromId(int32_t id) { return {0, id, 0, 0}; }
 };
-
-void init_item_set();
-
-void begin_randomzie(int seed);
-
-std::string get_name_by_real_id(long id, Category category);
-std::string get_name_by_id(long id);
-
-long random(long id);
 #endif
