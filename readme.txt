@@ -2,7 +2,7 @@
 
 ## 介绍
 
-- 本 mod 将 cer 中所有的法术、武器以及盔甲进行了随机，其余东西不会发生变化。MOD采用运行时交换 id 的形式，支持CER 2.13。
+- 本 mod 将 cer 中所有的法术、武器、盔甲、骨灰、灵药以及护符进行了随机（可通过配置文件配置部分随机），其余东西不会发生变化。MOD采用运行时交换 id 的形式，支持CER 2.13。
 旨在解决在CER中不知道走哪个流派的问题xD，强迫症福音。
 
 
@@ -19,8 +19,29 @@
 
 ```txt
 {
-    "debug_mode": false, //是否开启调试模式（会生成黑窗）
-    "seed": 1000 //种子
+    "debug_mode": false, //是否开启黑窗口
+    "seed": 2024, //种子
+    "weapon": {
+        "independent_pool": false, //是否在单独的池子内随机(否则和法术魔法一起随机),有效的前提是下方的random选项为true
+        "random": true //是否进行随机
+    },
+    "protector": {
+        "independent_pool": false, //同上
+        "random": true
+    },
+    "magic": {
+        "independent_pool": false, //同上
+        "random": true
+    },
+    "ash": {
+        "random": true //是否随机，只支持独立的池子
+    },
+    "tear": {
+        "random": true //是否随机，只支持独立的池子
+    },
+    "accessory": {
+        "random": true //是否随机，只支持独立的池子
+    }
 }
 ```
 
