@@ -202,8 +202,8 @@ void Randomizer::shuffle() {
 }
 void Randomizer::save_result() {
     auto &opt = Option::get();
-    auto name = "items_" + std::to_string(opt.seed) + ".txt";
-    FILE *fp = fopen(name.c_str(), "w");
+    auto name = misc::thisDllDirectory() / ("items_" + std::to_string(opt.seed) + ".txt");
+    FILE *fp = fopen(name.string().c_str(), "w");
     write_pool(fp, "Mixed", mix_pool, langs);
     write_pool(fp, "Weapons", weapon_pool, langs);
     write_pool(fp, "Protectors", protector_pool, langs);
